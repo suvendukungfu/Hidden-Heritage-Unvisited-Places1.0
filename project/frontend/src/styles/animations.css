@@ -1,0 +1,385 @@
+/* ========================================
+   HIDDEN HERITAGE - ANIMATION SYSTEM
+   Comprehensive animation variables and utilities
+   ======================================== */
+
+:root {
+  /* Animation Durations */
+  --anim-fast: 200ms;
+  --anim-medium: 420ms;
+  --anim-slow: 900ms;
+  --anim-slower: 1200ms;
+  
+  /* Easing Functions */
+  --ease-standard: cubic-bezier(0.22, 0.9, 0.29, 1);
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* Transform Origin Points */
+  --transform-origin-center: 50% 50%;
+  --transform-origin-top: 50% 0%;
+  --transform-origin-bottom: 50% 100%;
+  
+  /* Z-index Layers */
+  --z-parallax-bg: -1;
+  --z-parallax-mid: 0;
+  --z-parallax-fg: 1;
+  --z-content: 10;
+  --z-modal-backdrop: 100;
+  --z-modal: 101;
+}
+
+/* ========================================
+   SCROLL REVEAL ANIMATIONS
+   ======================================== */
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--anim-medium) var(--ease-standard),
+              transform var(--anim-medium) var(--ease-standard);
+}
+
+.reveal-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveals */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--anim-medium) var(--ease-standard),
+              transform var(--anim-medium) var(--ease-standard);
+}
+
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 70ms; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 140ms; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 210ms; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 280ms; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 350ms; }
+.reveal-stagger.revealed > *:nth-child(7) { transition-delay: 420ms; }
+.reveal-stagger.revealed > *:nth-child(8) { transition-delay: 490ms; }
+.reveal-stagger.revealed > *:nth-child(9) { transition-delay: 560ms; }
+.reveal-stagger.revealed > *:nth-child(10) { transition-delay: 630ms; }
+
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   PARALLAX HERO LAYERS
+   ======================================== */
+
+.parallax-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.parallax-layer-bg {
+  z-index: var(--z-parallax-bg);
+  transform: translateZ(0);
+}
+
+.parallax-layer-mid {
+  z-index: var(--z-parallax-mid);
+  transform: translateZ(0);
+}
+
+.parallax-layer-fg {
+  z-index: var(--z-parallax-fg);
+  transform: translateZ(0);
+}
+
+/* ========================================
+   KEN BURNS EFFECT
+   ======================================== */
+
+.ken-burns {
+  animation: kenBurnsZoom 12s linear forwards;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes kenBurnsZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.ken-burns:hover {
+  animation-play-state: paused;
+}
+
+/* ========================================
+   CARD 3D HOVER EFFECTS
+   ======================================== */
+
+.card-3d {
+  transition: transform var(--anim-medium) var(--ease-standard),
+              box-shadow var(--anim-medium) var(--ease-standard);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18),
+              0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   MAP PIN ANIMATIONS
+   ======================================== */
+
+.map-pin {
+  transition: transform var(--anim-fast) var(--ease-soft),
+              filter var(--anim-fast) var(--ease-soft);
+  transform-origin: bottom center;
+}
+
+.map-pin:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 8px 16px rgba(200, 107, 58, 0.4));
+}
+
+.map-popup-enter {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 260ms var(--ease-standard),
+              transform 260ms var(--ease-standard);
+}
+
+.map-popup-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   ROUTE DRAWING ANIMATION
+   ======================================== */
+
+.route-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawRoute var(--anim-slower) var(--ease-standard) forwards;
+}
+
+@keyframes drawRoute {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ========================================
+   MODAL & BACKDROP BLUR
+   ======================================== */
+
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(74, 47, 35, 0.4);
+  animation: backdropFadeIn 320ms var(--ease-standard) forwards;
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation: modalSlideIn 320ms var(--ease-standard) forwards;
+  transform-origin: center center;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   DRAG & DROP ANIMATIONS (FLIP)
+   ======================================== */
+
+.draggable-item {
+  transition: transform 350ms var(--ease-standard),
+              box-shadow 350ms var(--ease-standard);
+}
+
+.draggable-item.is-dragging {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  cursor: grabbing;
+}
+
+.draggable-item.is-over {
+  border: 2px dashed var(--terracotta);
+}
+
+/* ========================================
+   AUDIO WAVEFORM ANIMATION
+   ======================================== */
+
+.waveform-bar {
+  animation: waveformPulse 1.2s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0ms; }
+.waveform-bar:nth-child(2) { animation-delay: 100ms; }
+.waveform-bar:nth-child(3) { animation-delay: 200ms; }
+.waveform-bar:nth-child(4) { animation-delay: 300ms; }
+.waveform-bar:nth-child(5) { animation-delay: 400ms; }
+
+@keyframes waveformPulse {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.waveform-bar.paused {
+  animation-play-state: paused;
+}
+
+/* ========================================
+   PAGE TRANSITION (Shared Element)
+   ======================================== */
+
+.page-transition-enter {
+  opacity: 0;
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 600ms var(--ease-standard);
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 600ms var(--ease-standard);
+}
+
+.shared-element-hero {
+  animation: sharedElementTransition 600ms var(--ease-standard) forwards;
+}
+
+@keyframes sharedElementTransition {
+  from {
+    transform: scale(0.95) translateY(-20px);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 184, 154, 0.1) 0%,
+    rgba(217, 184, 154, 0.2) 50%,
+    rgba(217, 184, 154, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY - REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .parallax-layer {
+    transform: none !important;
+  }
+  
+  .ken-burns {
+    animation: none !important;
+  }
+  
+  .card-3d:hover {
+    transform: translateY(-4px);
+  }
+  
+  .reveal-section,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.will-animate-complete {
+  will-change: auto;
+}
+
+/* Hardware acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
