@@ -1,9 +1,6 @@
-import dynamic from "next/dynamic";
-
-const ChambalMap = dynamic(
-  () => import("../../components/ChambalMap"),
-  { ssr: false }
-);
+import ChambalMapWrapper from "@/app/components/ChambalMapWrapper";
+import HeritageSiteCard from "@/app/components/HeritageSiteCard";
+import { chambalHeritageSites } from "./heritageData";
 
 export default function ChambalRegionPage() {
   return (
@@ -24,22 +21,30 @@ export default function ChambalRegionPage() {
           Stretching across Madhya Pradesh, Rajasthan, and Uttar Pradesh, the
           Chambal has long been misunderstood as an inaccessible landscape.
           However, beneath its rugged terrain lies a treasure trove of cultural,
-          architectural, and archaeological heritage — from the Bateshwar
-          temple complex to prehistoric rock art and forgotten river routes.
+          architectural, and archaeological heritage.
         </p>
       </section>
 
-      {/* Map placeholder */}
-      <section className="max-w-5xl mx-auto">
+      {/* Map */}
+      <section className="max-w-5xl mx-auto mb-20">
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Interactive Map
         </h2>
+        <ChambalMapWrapper />
+      </section>
 
-        <div className="h-[450px] bg-gray-200 rounded-xl flex items-center justify-center text-gray-500">
-          Map loading...
+      {/* Heritage Cards */}
+      <section className="max-w-6xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-10 text-center">
+          Heritage Sites
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {chambalHeritageSites.map((site) => (
+            <HeritageSiteCard key={site.id} site={site} />
+          ))}
         </div>
       </section>
     </main>
   );
 }
-
