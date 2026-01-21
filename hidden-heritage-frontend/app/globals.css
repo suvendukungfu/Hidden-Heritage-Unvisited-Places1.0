@@ -1,0 +1,11 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+@import "leaflet/dist/leaflet.css";
+
+/* Global theme styles */
+html,
+body {
+  background-color: #f6efe6;
+  color: #3b2a1a;
+  font-family: Georgia, "Times New Roman", serif;
+}
