@@ -1,30 +1,22 @@
-import ChambalInteractiveSection 
-from "@/app/region/chambal/ChambalInteractiveSection";
-import { heritageSites } from "@/app/region/chambal/heritageData";
+import ChambalInteractiveSection from "./ChambalInteractiveSection";
+import { heritageSites } from "./heritageData";
 
-export default function ChambalRegionPage() {
+export default function ChambalPage() {
   return (
-    <main className="px-8 py-16">
-      {/* 🏞️ Header */}
-      <section className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Chambal Region</h1>
-        <p className="max-w-3xl mx-auto text-gray-600">
-          The Chambal region is a land of mystery and forgotten heritage.
-          Known for its dramatic ravines, ancient temples, and deep
-          historical layers.
+    <main className="px-6 py-12">
+      {/* Header */}
+      <section className="text-center max-w-3xl mx-auto mb-12">
+        <h1 className="text-4xl font-bold mb-4">
+          Chambal Region
+        </h1>
+        <p className="text-gray-600">
+          Discover the hidden temples, ravines, and forgotten
+          heritage sites of the Chambal region through interactive
+          maps, safety insights, and curated storytelling.
         </p>
       </section>
 
-      {/* 📜 Description */}
-      <section className="max-w-4xl mx-auto mb-16 text-gray-700 leading-relaxed">
-        <p>
-          Beneath the rugged terrain of the Chambal lies a treasure
-          trove of cultural, architectural, and archaeological heritage —
-          from ancient temples to prehistoric rock art.
-        </p>
-      </section>
-
-      {/* 🗺️ Interactive Client Section */}
+      {/* ✅ ONLY THIS COMPONENT GETS `sites` */}
       <ChambalInteractiveSection sites={heritageSites} />
     </main>
   );
