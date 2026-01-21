@@ -9,3 +9,43 @@ body {
   color: #3b2a1a;
   font-family: Georgia, "Times New Roman", serif;
 }
+/* Heritage Cluster Badge */
+.heritage-cluster {
+  background: radial-gradient(circle at top,
+      #b07a3c,
+      #6b3e1e);
+  border: 3px solid #f3e1c7;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-family: "Georgia", serif;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.heritage-cluster span {
+  display: block;
+  line-height: 1;
+}
+
+/* Sizes */
+.heritage-cluster.small {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+}
+
+.heritage-cluster.medium {
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 16px;
+}
+
+.heritage-cluster.large {
+  width: 58px;
+  height: 58px;
+  line-height: 58px;
+  font-size: 18px;
+}
