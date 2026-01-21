@@ -5,6 +5,7 @@ import ChambalMap from "@/app/components/ChambalMap";
 import HeritageSiteCard from "@/app/components/HeritageSiteCard";
 import HeatmapToggle from "@/app/components/HeatmapToggle";
 import SafetyLegend from "@/app/components/SafetyLegend";
+import SiteDetailModal from "@/app/components/SiteDetailModal";
 import { HeritageSite } from "./heritageData";
 
 type FocusLocation = {
@@ -19,6 +20,9 @@ export default function ChambalInteractiveSection({
   sites: HeritageSite[];
 }) {
   const [activeSiteId, setActiveSiteId] = useState<string | null>(null);
+  const [selectedSite, setSelectedSite] =
+    useState<HeritageSite | null>(null);
+
   const [focusLocation, setFocusLocation] =
     useState<FocusLocation>(null);
 
@@ -27,13 +31,15 @@ export default function ChambalInteractiveSection({
 
   const selectSite = (site: HeritageSite) => {
     setActiveSiteId(site.id);
+    setSelectedSite(site);
+
     setFocusLocation({
       lat: site.lat,
       lng: site.lng,
       zoom: 13,
     });
 
-    // Scroll card into view when marker is clicked
+    // Scroll card into view
     document
       .getElementById(`site-${site.id}`)
       ?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -50,7 +56,7 @@ export default function ChambalInteractiveSection({
       {/* 🛡️ Safety Legend */}
       <SafetyLegend />
 
-      {/* 🗺️ Interactive Map */}
+      {/* 🗺️ Map */}
       <section className="max-w-5xl mx-auto mb-12">
         <ChambalMap
           sites={sites}
@@ -61,7 +67,7 @@ export default function ChambalInteractiveSection({
         />
       </section>
 
-      {/* 🏛️ Heritage Site Cards */}
+      {/* 🏛️ Cards */}
       <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {sites.map((site) => (
           <HeritageSiteCard
@@ -72,6 +78,12 @@ export default function ChambalInteractiveSection({
           />
         ))}
       </section>
+
+      {/* 📖 Site Detail Modal */}
+      <SiteDetailModal
+        site={selectedSite}
+        onClose={() => setSelectedSite(null)}
+      />
     </>
   );
 }
