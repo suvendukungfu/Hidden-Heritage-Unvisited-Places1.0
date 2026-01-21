@@ -47,7 +47,7 @@ export default function SafetyLegend() {
         {bands.map((band) => (
           <div key={band.range} className="flex gap-3">
             <span
-              className={`w-3 h-3 rounded-full mt-1 flex-shrink-0 ${band.color}`}
+              className={`w-3 h-3 rounded-full mt-1 shrink-0 ${band.color}`}
             />
             <div>
               <div className="font-medium text-gray-800">

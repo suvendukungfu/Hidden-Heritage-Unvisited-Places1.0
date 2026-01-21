@@ -1,0 +1,9 @@
+7dba809 feat: add safety readiness system with legend and per-site explanations
+1cc0490 `Added @types/leaflet and updated package-lock.json`
+4071ea5 feat: heritage cards control map focus in Chambal region
+15b3d59 feat: add heritage site cards below Chambal map
+b54deba chore: remove unused tourism_hidden_heritage artifact
+592414c chore: ignore macOS .DS_Store files
+5e00111 chore: ignore macOS .DS_Store files
+f7e1dc5 chore: initialize Next.js frontend with Tailwind and TypeScript
+839ac9c Clean project restart
