@@ -1,18 +1,18 @@
-type HeritageSite = {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  image: string;
-};
+import { HeritageSite } from "@/app/region/chambal/heritageData";
 
 export default function HeritageSiteCard({
   site,
+  onClick,
 }: {
   site: HeritageSite;
+  onClick: () => void;
 }) {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+    <div
+      onClick={onClick}
+      className="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden
+                 hover:shadow-xl hover:-translate-y-1 transition"
+    >
       <img
         src={site.image}
         alt={site.name}
