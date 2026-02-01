@@ -1,0 +1,44 @@
+name: Hidden Heritage CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  verify-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linting
+        run: npm run lint
+
+      - name: Build Project
+        run: npm run build
+
+      # User requested Vercel notification snippet
+      # Note: This requires VERCEL_TOKEN and VERCL_PROJECT_ID secrets to be fully functional if controlling external checks.
+      # If just reporting status, standard GitHub checks usually suffice.
+      # Assuming this is intended to mark a custom check on Vercel:
+      # - name: 'notify vercel'
+      #   if: always() # Run even if lint fails
+      #   uses: 'vercel/repository-dispatch/actions/status@v1'
+      #   with:
+      #     name: Vercel - Hidden Heritage: Lint
+      #     token: ${{ secrets.GITHUB_TOKEN }} # Or specific vercel token if needed
