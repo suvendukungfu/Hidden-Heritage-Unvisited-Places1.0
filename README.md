@@ -2,7 +2,7 @@
 
 > A production-ready tourism-tech platform helping users discover off-beat heritage sites. Built for scale, safety, and storytelling.
 
-## 🚀 Overview
+## Overview
 **Hidden Heritage** goes beyond standard travel booking. It is a comprehensive platform designed to bring attention to forgotten regions like **Chambal**.
 The MVP features:
 - **Interactive Maps**: Real-time exploration of sites.
@@ -10,7 +10,7 @@ The MVP features:
 - **Safety Readiness System**: Transparent safety scores (0-10) and accessibility data.
 - **AI History Narrator**: Automated storytelling based on user personas (Tourist/Student/Researcher).
 
-## 🛠 Tech Stack
+## Tech Stack
 - **Frontend**: React (Vite), TypeScript, Framer Motion, Leaflet, dnd-kit.
 - **Backend**: Node.js, Express, TypeScript (REST API).
 - **Database**:
@@ -18,7 +18,7 @@ The MVP features:
   - **MongoDB**: Unstructured data (User feedback, Rich stories).
 - **Infrastructure**: Docker & Docker Compose.
 
-## 🏃‍♂️ Quick Start
+##  Quick Start
 
 ### Option A: Production Mode (Requires Docker)
 This runs the full stack with real databases.
@@ -50,7 +50,7 @@ If you cannot run Docker, the Frontend will automatically **fallback to a Mock A
     ```
 2.  Open `http://localhost:5173`. All features (Trip Builder, AI, Safety) will work with realistic seed data.
 
-## 📚 Key Features & Usage
+##  Key Features & Usage
 
 ### 1. Explore Regions
 Navigate to **Explore** -> **Chambal**. Detailed cards show site info. Hover over cards to see them highlight on the interactive map.
@@ -67,7 +67,7 @@ Go to any Site Detail page (e.g., *Bateshwar Temples*).
 - **Safety Badge**: Top right sidebar. Green = Safe/Family Friendly.
 - **AI Narrator**: Scroll down to "AI History Narrator". Select "Researcher" for a deep dive.
 
-## 📂 Project Structure
+##  Project Structure
 ```
 hidden-heritage-mvp/
 ├── backend/                 # Express API
@@ -84,6 +84,6 @@ hidden-heritage-mvp/
 └── docker-compose.yml       # DB Orchestration
 ```
 
-## ⚠️ Notes
+##Notes
 - **Placeholder Data**: The Map currently focuses on the Chambal region. Coordinates are real approximations.
 - **AI Stub**: The AI endpoint currently uses a sophisticated template engine. Connect to OpenAI API in `backend/src/controllers/aiController.ts` for live generation.
